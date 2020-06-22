@@ -18,8 +18,8 @@
             <p class="text-secondary">{{ user.email }}</p>
         </div>
     </div>
-    {{ u_form|crispy}}
-    {{ p_form|crispy}}
+    {{ form|crispy}}
+
     <button type="submit" class="btn btn-info">Save</button>
     <a href="{% url 'index' %}" class="btn btn-success">Cancel</a>
 
