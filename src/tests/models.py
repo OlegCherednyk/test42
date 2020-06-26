@@ -60,7 +60,7 @@ class TestResult(models.Model):
     avr_score = models.DecimalField(max_digits=6, decimal_places=2)
 
 
-class TestRunDetail(models.Model):
+class TestResultDetail(models.Model):
     test_result = models.ForeignKey(to=TestResult, related_name='test_result_details', on_delete=models.CASCADE)
     question = models.ForeignKey(to=Question, related_name='test_result_details', null=True, blank=True, on_delete=models.CASCADE)
     answer = models.ForeignKey(to=Variant, related_name='test_result_details', on_delete=models.CASCADE)

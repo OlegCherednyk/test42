@@ -3,7 +3,7 @@ from django.contrib import admin
 from tests.models import Question, Test, Variant
 
 
-class AnswersInline(admin.TabularInline):
+class VariantInline(admin.TabularInline):
     model = Variant
     fields = ('text', 'is_correct')
     show_change_link = False
@@ -15,7 +15,7 @@ class QuestionAdminModel(admin.ModelAdmin):
     list_select_related = ('test',)
     list_per_page = 5
     search_fields = ('first_name',)
-    inlines = (AnswersInline,)
+    inlines = (VariantInline,)
 
 
 class QuestionsInline(admin.TabularInline):
