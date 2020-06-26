@@ -19,12 +19,17 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 
+from tests.views import TestListView, LeaderBoardListView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
 
     path('account/', include("user_account.urls")),
+
+    path('test_list/', TestListView.as_view(), name='test_list'),
+    path('leaderboard_list/', LeaderBoardListView.as_view(), name='leaderboard_list'),
 ]
 
 urlpatterns += \
