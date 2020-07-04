@@ -19,7 +19,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 
-from tests.views import TestListView, LeaderBoardListView
+from tests.views import TestListView, LeaderBoardListView, TestRunView, StartTestView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,7 +29,9 @@ urlpatterns = [
     path('account/', include("user_account.urls")),
 
     path('test_list/', TestListView.as_view(), name='test_list'),
-    path('leaderboard_list/', LeaderBoardListView.as_view(), name='leaderboard_list'),
+    path('test_list/leaderboard_list/', LeaderBoardListView.as_view(), name='leaderboard_list'),
+    path('test_list/<int:pk>/question/<int:seq_nr>', TestRunView.as_view(), name='testrun_step'),
+    path('test_list/<int:pk>/start', StartTestView.as_view(), name='start'),
 ]
 
 urlpatterns += \

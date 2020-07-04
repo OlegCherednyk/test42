@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from tests.forms import TestForm, QuestionsInlineFormSet, VariantInlineFormset, QuestionForm
 from tests.models import Question, Test, Variant
 
 
@@ -7,6 +8,7 @@ class VariantInline(admin.TabularInline):
     model = Variant
     fields = ('text', 'is_correct')
     show_change_link = False
+    formset = VariantInlineFormset
     extra = 0
 
 
@@ -16,6 +18,7 @@ class QuestionAdminModel(admin.ModelAdmin):
     list_per_page = 5
     search_fields = ('first_name',)
     inlines = (VariantInline,)
+    form = QuestionForm
 
 
 class QuestionsInline(admin.TabularInline):
@@ -23,6 +26,8 @@ class QuestionsInline(admin.TabularInline):
     fields = ('text', 'number')
     show_change_link = True
     extra = 0
+    formset = QuestionsInlineFormSet
+
 
 
 class TestAdminModel(admin.ModelAdmin):
@@ -30,6 +35,7 @@ class TestAdminModel(admin.ModelAdmin):
     list_display = ('title', 'description', 'level', 'image')
     list_per_page = 10
     inlines = (QuestionsInline,)
+    form = TestForm
 
 
 admin.site.register(Test, TestAdminModel)

@@ -61,6 +61,13 @@
     </nav>
 
     <h3>{{title}}</h3>
+
+    <div class="border rounded text-center p-3 m-3 bg-light text-dark">
+        <h1>{% block title %}{{ title }}{% endblock %}</h1>
+    </div>
+
     {%block content %}
     {%endblock%}
+
+
 </div>
