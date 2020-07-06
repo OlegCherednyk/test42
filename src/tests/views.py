@@ -31,7 +31,7 @@ class LeaderBoardListView(ListView):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        qs = qs.order_by('-avr_score')
+
         return qs
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -102,8 +102,8 @@ class TestRunView(View):
                 template_name='testrun_end.html',
                 context={
                     'avr_score': f'{current_test_result.avr_score:.1f}',
-                    'percent': f'{current_test_result.avr_score/Question.objects.filter(test__id=pk).count()*100:.1f}',
-                    'question_count': Question.objects.filter(test__id=pk).count(),
+                    'percent': f'{current_test_result.avr_score/ test.questions_count()*100:.1f}',
+                    'question_count': test.questions_count(),
                     'test_result': current_test_result,
                     'time_spent': datetime.datetime.utcnow() - current_test_result.datetime_run.replace(tzinfo=None)
                 }
@@ -119,11 +119,14 @@ class StartTestView(View):
             user=request.user,
             test=test
         )
-
+        num_run = test.test_results.count()
+        best_result = test.test_results.order_by('-avr_score').first()
         return render(
             request=request,
             template_name='testrun_start.html',
             context={
+                'num_run': num_run,
+                'best_result': best_result,
                 'test': test,
                 'test_result': test_result
             },
