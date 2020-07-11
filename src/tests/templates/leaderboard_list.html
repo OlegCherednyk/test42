@@ -7,7 +7,11 @@
         <tr>
             <th>Rank</th>
             <th>User</th>
+            <th>Score</th>
             <th>Average score</th>
+            <th>Last run</th>
+            <th>Number of tests</th>
+
 
         </tr>
         </thead>
@@ -17,12 +21,15 @@
             <td>
                 <div class="media">
                 <div class="img-circle.vert">
-                    <img width="90" height="90" src="{{ user.user.image.url }}">
+                    <img width="90" height="90" src="{{ user.image.url }}">
                 </div>
                 </div>
-                {{ user.user.username }}
+                {{ user.username }}
             </td>
+            <td> {{ user.sum_score }}</td>
             <td> {{ user.avr_score }}</td>
+            <td> {{ user.last_run }}</td>
+            <td> {{ user.test_results.count }}</td>
 
 
         </tr>

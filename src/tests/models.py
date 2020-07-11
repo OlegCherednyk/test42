@@ -69,6 +69,7 @@ class TestResult(models.Model):
 
     datetime_run = models.DateTimeField(auto_now_add=True)
     is_completed = models.BooleanField(default=False)
+    is_new = models.BooleanField(default=True)
 
     avr_score = models.DecimalField(default=0.0, decimal_places=2, max_digits=5,
                                     validators=[MinValueValidator(0), MaxValueValidator(100)])
@@ -85,7 +86,7 @@ class TestResult(models.Model):
 
     def finish(self):
         self.update_score()
-        self.is_complete = True
+        self.is_completed = True
 
     def __str__(self):
         return f'{self.title}'

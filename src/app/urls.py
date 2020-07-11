@@ -30,7 +30,7 @@ urlpatterns = [
 
     path('test_list/', TestListView.as_view(), name='test_list'),
     path('test_list/leaderboard_list/', LeaderBoardListView.as_view(), name='leaderboard_list'),
-    path('test_list/<int:pk>/question/<int:seq_nr>', TestRunView.as_view(), name='testrun_step'),
+    path('test_list/<int:pk>/next', TestRunView.as_view(), name='next'),
     path('test_list/<int:pk>/start', StartTestView.as_view(), name='start'),
 ]
 
