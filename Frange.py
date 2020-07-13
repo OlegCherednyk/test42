@@ -4,17 +4,18 @@ class Frange:
         def __init__(self, lim1, lim2, step):
             self._step = step
             self._lim1 = lim1
+            self._pre_lim = lim1
             self._lim2 = lim2
             self._pointer = 0
 
         def __next__(self):
-            if self._pointer > abs((self._lim2 - self._lim1)/self._step):
+            if self._pointer >= abs((self._lim2 - self._lim1)/self._step):
                 raise StopIteration
             if self._pointer == 0:
-                result = self._lim1
+                result = self._pre_lim
             else:
-                result = self._lim1 + self._step
-                self._lim1 = result
+                result = self._pre_lim + self._step
+                self._pre_lim = result
             self._pointer += 1
 
             return result
@@ -33,15 +34,5 @@ class Frange:
         return self.FrangeIter(self._lim1, self._lim2, self._step)
 
 
-f = Frange(0, -5, -0.5)
-frange = iter(f)
-
-print(f._lim1)
-print(f._lim2)
-
 print('-----------')
 
-print(next(frange))
-print(next(frange))
-print(next(frange))
-print(next(frange))
