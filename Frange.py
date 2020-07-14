@@ -20,10 +20,10 @@ class Frange:
 
             return result
 
-    def __init__(self, lim2, lim1="default", step=1):
+    def __init__(self, lim2, lim1=None, step=1):
         self._step = step
 
-        if lim1 == "default":
+        if lim1 is None:
             self._lim1 = 0
             self._lim2 = lim2
         else:
@@ -33,8 +33,12 @@ class Frange:
     def __iter__(self):
         return self.FrangeIter(self._lim1, self._lim2, self._step)
 
+
+
+
+
+
 f = iter(Frange(-1, 1))
 print(next(f))
 
-
-assert(list(Frange(-4, -5)) == [])
+assert(list(Frange(100, 0)) == [])

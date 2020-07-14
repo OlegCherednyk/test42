@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tests', '0002_testresult'),
+        ('global_tests', '0002_testresult'),
     ]
 
     operations = [
@@ -23,9 +23,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('is_correct', models.BooleanField(default=False)),
-                ('answer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='test_result_details', to='tests.Variant')),
-                ('question', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='test_result_details', to='tests.Question')),
-                ('test_result', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='test_result_details', to='tests.TestResult')),
+                ('answer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='test_result_details', to='global_tests.Variant')),
+                ('question', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='test_result_details', to='global_tests.Question')),
+                ('test_result', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='test_result_details', to='global_tests.TestResult')),
             ],
         ),
     ]
