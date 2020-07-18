@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {{ block.super }}
+    Question #{{ question.number }}: <b>{{ question.text }}</b> ?
+{% endblock %}
+
+
+{% block content %}
+{% include 'includes/messages.html' %}
+
+    <form method="post">
+        {% csrf_token %}
+        {% for variant in variant %}
+            <div class="checkbox">
+              <label><input type="checkbox" name="answer_{{ forloop.counter }}" value="1">   {{ variant }}</label>
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-success">Submit</button>
+        {{t}}
+
+    </form>
+{% endblock %}

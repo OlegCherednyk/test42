@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{%block content%}
+<form enctype="multipart/form-data">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>Rank</th>
+            <th>User</th>
+            <th>Score</th>
+            <th>Average score</th>
+            <th>Last run</th>
+            <th>Number of tests</th>
+
+
+        </tr>
+        </thead>
+        {% for user in leaderboard_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <div class="media">
+                <div class="img-circle.vert">
+                    <img width="90" height="90" src="{{ user.image.url }}">
+                </div>
+                </div>
+                {{ user.username }}
+            </td>
+            <td> {{ user.sum_score }}</td>
+            <td> {{ user.avr_score }}</td>
+            <td> {{ user.last_run }}</td>
+            <td> {{ user.test_results.count }}</td>
+
+
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+{% include 'includes/pagination.html' %}
+
+{%endblock%}
