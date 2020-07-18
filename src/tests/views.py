@@ -26,12 +26,13 @@ class TestListView(LoginRequiredMixin, ListView):
         return context
 
 
-class LeaderBoardListView(ListView):
+class LeaderBoardListView(LoginRequiredMixin, ListView):
     model = User
     template_name = 'leaderboard_list.html'
     queryset = User.objects.order_by('-avr_score').all()
     paginate_by = 10
     context_object_name = 'leaderboard_list'
+    login_url = reverse_lazy('login')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
