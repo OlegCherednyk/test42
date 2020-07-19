@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     'user_account',
-    'tests',
+    'global_tests',
 ]
 
 MIDDLEWARE = [

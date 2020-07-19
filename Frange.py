@@ -33,8 +33,12 @@ class Frange:
     def __iter__(self):
         return self.FrangeIter(self._lim1, self._lim2, self._step)
 
+
+
+
+
+
 f = iter(Frange(-1, 1))
 print(next(f))
 
-
-assert(list(Frange(-4, -5)) == [])
+assert(list(Frange(100, 0)) == [])
