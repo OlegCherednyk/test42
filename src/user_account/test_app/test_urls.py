@@ -37,4 +37,3 @@ class UrlsAvailabilityTests(TestCase):
             response = self.client.get(url)
             assert response.status_code == 200
             assert content in response.content.decode()
-

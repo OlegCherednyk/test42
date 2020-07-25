@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 
-from app.settings import AUTH_USER_MODEL
+from app.settings.dev import AUTH_USER_MODEL
 from user_account.models import User
 
 

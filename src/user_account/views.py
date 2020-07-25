@@ -8,7 +8,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
-from app.settings import AUTH_USER_MODEL
+from app.settings.components.base import AUTH_USER_MODEL
 from user_account.forms import UserAccountRegistrationForm, UserAccountProfileForm
 
 

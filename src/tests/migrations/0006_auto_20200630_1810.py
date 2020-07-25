@@ -9,7 +9,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('global_tests', '0005_auto_20200626_1426'),
+        ('tests', '0005_auto_20200626_1426'),
     ]
 
     operations = [
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='testresult',
             name='test',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='test_results', to='global_tests.Test'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='test_results', to='tests.Test'),
         ),
         migrations.AlterField(
             model_name='testresult',

@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('text', models.CharField(max_length=64)),
                 ('is_correct', models.BooleanField(default=False)),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='variants', to='global_tests.Question')),
+                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='variants', to='tests.Question')),
             ],
         ),
         migrations.CreateModel(
@@ -45,12 +45,12 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(blank=True, max_length=1024, null=True)),
                 ('level', models.PositiveSmallIntegerField(choices=[(1, 'Basic'), (2, 'Middle'), (3, 'Advanced')], default=2)),
                 ('image', models.ImageField(default='default.png', upload_to='covers')),
-                ('topic', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='test', to='global_tests.Topic')),
+                ('topic', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='test', to='tests.Topic')),
             ],
         ),
         migrations.AddField(
             model_name='question',
             name='test',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='questions', to='global_tests.Test'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='questions', to='tests.Test'),
         ),
     ]
