@@ -1,0 +1,6 @@
+import os
+
+EMAIL_HOST = os.environ['SECRET_KEY']
+EMAIL_POST = os.environ['EMAIL_POST']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
