@@ -20,9 +20,9 @@ load_dotenv(os.environ.get("ENV_CONFIG", ""))
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
-DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -135,3 +135,6 @@ LOGIN_REDIRECT_URL = '/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Something went wrong :({% endblock title %}
+{% block content %}
+<h1>Error 403</h1>
+<h3>Page not found</h3>
+
+
+<a class="navbar-brand" href="{% url 'index' %}">Back to main page</a>
+{% endblock content %}

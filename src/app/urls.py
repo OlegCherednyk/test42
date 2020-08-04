@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 
+import tests
 from tests.views import TestListView, LeaderBoardListView, TestRunView, StartTestView
 
 urlpatterns = [
@@ -42,3 +43,8 @@ if settings.DEBUG:
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
     ] + urlpatterns
+
+handler404 = tests.views.handler404
+handler403 = tests.views.handler403
+handler400 = tests.views.handler400
+handler500 = tests.views.handler500
