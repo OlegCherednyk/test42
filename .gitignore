@@ -3,3 +3,4 @@ env/
 *.pyc
 settings_local.py
 *.env
+cdn/
