@@ -3,6 +3,7 @@ import os
 import random
 import string
 import time
+from enum import auto, Enum
 from math import ceil
 from multiprocessing.pool import ThreadPool
 import requests
@@ -87,29 +88,36 @@ def fetch_pic(num_pic):
             print(f"Error {response.status_code}")
 
 
+class SpeedupType(Enum):
+    MULTITHREADING = auto
+    MULTIPROCESSING = auto
+
+
 def check_multi(func, type_multi, data):
 
     workers = 1
-
     while True:
 
         start = time.time()
 
-        if type_multi == 'multiprocessing':
-            if func == total_factorize_naive:
+        if type_multi == SpeedupType.MULTIPROCESSING:
+            if func == factorize_naive:
                 with multiprocessing.Pool(workers) as pool:
-                    input_data = parting(data, len(data) // workers)
-                    pool.map(func, input_data)
+                    results = pool.map(func, data)
+                    for n, k in enumerate(results):
+                        result[n] = k
+
             if func == fetch_pic:
                 with multiprocessing.Pool(workers) as pool:
                     input_data = [data // workers for _ in range(workers)]
                     pool.map(fetch_pic, input_data)
 
-        if type_multi == 'multithreaded':
+        if type_multi == SpeedupType.MULTITHREADING:
             if func == total_factorize_naive:
                 with ThreadPool(workers) as pool:
-                    input_data = parting(data, len(data) // workers)
-                    pool.map(total_factorize_naive, input_data)
+                    results = pool.map(func, data)
+                    for n, k in enumerate(results):
+                        result[n] = k
 
             if func == fetch_pic:
                 with ThreadPool(workers) as pool:
@@ -129,11 +137,11 @@ def check_multi(func, type_multi, data):
         workers += 1
 
 
-check_multi(total_factorize_naive, 'multiprocessing', data)
-check_multi(total_factorize_naive, 'multithreaded', data)
+check_multi(factorize_naive, SpeedupType.MULTIPROCESSING, data)
+check_multi(factorize_naive, SpeedupType.MULTITHREADING, data)
 
-check_multi(fetch_pic, 'multiprocessing', 20)
-check_multi(fetch_pic, 'multithreaded', 20)
+# check_multi(fetch_pic, SpeedupType.MULTIPROCESSING, 20)
+# check_multi(fetch_pic, SpeedupType.MULTITHREADING, 20)
 
 
 
